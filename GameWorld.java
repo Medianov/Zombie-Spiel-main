@@ -32,12 +32,12 @@ public class GameWorld extends JFrame {
 
         for (int i = 0; i < heilmittel.length; i++) {
             heilmittel[i] = new JLabel();
-            drow(heilmittel[i], "\u2695", Color.green, 0, 0, 12, 10);
+            drow(heilmittel[i], String.valueOf(i), Color.green, 0, 0, 12, 15);
         }
     }
 
     /**
-     * 
+     *
      * @param charakter
      * @param name
      * @param color
@@ -51,20 +51,14 @@ public class GameWorld extends JFrame {
         int probey;
         if (x == 0 && y == 0) {
             Random random = new Random();
+            probex = random.nextInt((Main.windowWidth - 25));
+            probey = random.nextInt((Main.windowHeight - 100));
 
-            y = random.nextInt((Main.windowHeight - 100));
-            x = random.nextInt((Main.windowWidth - 0));
-
-            if (randomy.contains(y)) {
-                while(randomy.contains(y)) {
-                    y = random.nextInt((Main.windowHeight - 100));
-                }
-            }
-
-            if (randomy.contains(x)) {
-                while(randomy.contains(x)) {
-                    x = random.nextInt((Main.windowWidth - 0));
-                }
+            while(!randomy.contains(probey) || !randomx.contains(probex)) {
+                y = probey;
+                x = probex;
+                randomy.add(y);
+                randomx.add(x);
             }
         }
 

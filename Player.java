@@ -16,32 +16,33 @@ public class Player extends Entity {
     int Yneu;
 
     public static class keyboard extends KeyAdapter {
+
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
-                Entity.Bewegung(GameWorld.spieler1.figur, -GameWorld.spieler1.speed, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, -GameWorld.spieler1.speed, 0);
             }
             if (key == KeyEvent.VK_RIGHT) {
-                Entity.Bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.speed, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.speed, 0);
             }
             if (key == KeyEvent.VK_UP) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, -GameWorld.spieler1.speed);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, -GameWorld.spieler1.speed);
             }
             if (key == KeyEvent.VK_DOWN) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, GameWorld.spieler1.speed);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, GameWorld.spieler1.speed);
             }
             if (key == KeyEvent.VK_A) {
-                Entity.Bewegung(GameWorld.spieler2.figur, -GameWorld.spieler2.speed, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, -GameWorld.spieler2.speed, 0);
             }
             if (key == KeyEvent.VK_D) {
-                Entity.Bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.speed, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.speed, 0);
             }
             if (key == KeyEvent.VK_W) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, -GameWorld.spieler2.speed);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, -GameWorld.spieler2.speed);
             }
             if (key == KeyEvent.VK_S) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
             }
 
         }
@@ -50,39 +51,39 @@ public class Player extends Entity {
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_RIGHT) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_UP) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_DOWN) {
-                Entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_A) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_D) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_W) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_S) {
-                Entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
             }
 
         }
     }
 
-    public static void gewinnen(Player spieler) {
+    public  void gewinnen(Player spieler) {
 
         if (Touch(spieler.figur, GameWorld.Ausgang)) {
 
             if (spieler.heilmittel_anzahl >= GameWorld.heilen / 2) {
-                spieler.figur.setBounds(-100, -100, 0, 0);
+                spieler.figur.setBounds(-10000, -10000, 0, 0);
 
                 GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " hat gewonnen");
             }
@@ -91,7 +92,7 @@ public class Player extends Entity {
         }
     }
 
-    public static void levels(Player spieler) {
+    public  void levels(Player spieler) {
         for (int i = 0; i < GameWorld.heilmittel.length; i++) {
             if (Touch(spieler.figur, GameWorld.heilmittel[i])) {
                 if (spieler.heilmittel_anzahl < GameWorld.heilen / 2) {
@@ -113,6 +114,8 @@ public class Player extends Entity {
             }
         }
     }
+
+
 
     @Override
 
@@ -136,5 +139,18 @@ public class Player extends Entity {
         }
 
     }
+
+    @Override
+    public void Bewegung(JLabel charakter, int x, int y)  {
+            charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
+            if (charakter == GameWorld.spieler1.figur) {
+                GameWorld.spieler1.Xneu = x;
+                GameWorld.spieler1.Yneu = y;
+            }
+            if (charakter == GameWorld.spieler2.figur) {
+                GameWorld.spieler2.Xneu = x;
+                GameWorld.spieler2.Yneu = y;
+            }
+        }
 
 }

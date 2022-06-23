@@ -6,6 +6,7 @@ import javax.swing.*;
 public abstract class Entity implements Runnable {
     JLabel figur = new JLabel();
     int speed = 1;
+    static Player entity = new Player();
 
 /**
  * 
@@ -13,17 +14,7 @@ public abstract class Entity implements Runnable {
  * @param x
  * @param y
  */
-    public static void Bewegung(JLabel charakter, int x, int y) {
-        charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
-        if (charakter == GameWorld.spieler1.figur) {
-            GameWorld.spieler1.Xneu = x;
-            GameWorld.spieler1.Yneu = y;
-        }
-        if (charakter == GameWorld.spieler2.figur) {
-            GameWorld.spieler2.Xneu = x;
-            GameWorld.spieler2.Yneu = y;
-        }
-    }
+
 
     /**
      * 
@@ -31,13 +22,13 @@ public abstract class Entity implements Runnable {
      */
     public static void rand_check(JLabel charakter) {
         if (charakter.getX() <= 0)
-            Player.Bewegung(charakter, 1, 0);
+            entity.Bewegung(charakter, 1, 0);
         if (charakter.getX() >= (Main.windowWidth - 25))
-            Player.Bewegung(charakter, -1, 0);
+            entity.Bewegung(charakter, -1, 0);
         if (charakter.getY() <= 0)
-            Player.Bewegung(charakter, 0, 1);
+            entity.Bewegung(charakter, 0, 1);
         if (charakter.getY() > (Main.windowHeight - 100))
-            Player.Bewegung(charakter, 0, -1);
+            entity.Bewegung(charakter, 0, -1);
     }
 
     /**
@@ -62,5 +53,5 @@ public abstract class Entity implements Runnable {
      */
     @Override
     public abstract void run();
-    
+    public abstract void Bewegung(JLabel charakter, int x, int y);
 }

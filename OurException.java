@@ -2,6 +2,6 @@ public class OurException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Es !";
+        return "Die Figuren überlapen sich !";
     }
 }

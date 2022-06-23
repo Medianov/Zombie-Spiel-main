@@ -1,4 +1,6 @@
-public class Zombie extends Entity {
+import javax.swing.*;
+
+public  class Zombie extends Entity {
 
     public void zombie_check(Player spieler) {
         if (Touch(spieler.zombie.figur, spieler.figur)) {
@@ -7,19 +9,19 @@ public class Zombie extends Entity {
         }
     }
 
-    public static void zombie_folgen(Player spieler) {
+    public  void zombie_folgen(Player spieler) {
         if (spieler.figur.getX() > 0) {
             if (spieler.zombie.figur.getX() < spieler.figur.getX()) {
-                Player.Bewegung(spieler.zombie.figur, spieler.zombie.speed, 0);
+                Bewegung(spieler.zombie.figur, spieler.zombie.speed, 0);
             }
             if (spieler.zombie.figur.getX() > spieler.figur.getX()) {
-                Player.Bewegung(spieler.zombie.figur, -spieler.zombie.speed, 0);
+                Bewegung(spieler.zombie.figur, -spieler.zombie.speed, 0);
             }
             if (spieler.zombie.figur.getY() < spieler.figur.getY()) {
-                Player.Bewegung(spieler.zombie.figur, 0, spieler.zombie.speed);
+                Bewegung(spieler.zombie.figur, 0, spieler.zombie.speed);
             }
             if (spieler.zombie.figur.getY() > spieler.figur.getY()) {
-                Player.Bewegung(spieler.zombie.figur, 0, -spieler.zombie.speed);
+                Bewegung(spieler.zombie.figur, 0, -spieler.zombie.speed);
             }
         }
     }
@@ -46,5 +48,10 @@ public class Zombie extends Entity {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void Bewegung(JLabel charakter, int x, int y)  {
+            charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
     }
 }
