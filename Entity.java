@@ -58,8 +58,8 @@ public abstract class Entity implements Runnable {
     }
 
     /*
-     * Abrakte Methode
+     * Abrakte Methoden
      */
     @Override
-    public void run() {}
+    public abstract void run();
 }

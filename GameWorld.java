@@ -63,17 +63,25 @@ public class GameWorld extends JFrame {
     }
 
     /**
-     * 
+     * Eine eigentlich unnötige Enumeration.
      */
+    enum labelOnScreen {
+        S, Z, T
+    }
+
+    labelOnScreen playerLook = labelOnScreen.S;
+    labelOnScreen zombieLook = labelOnScreen.Z;
+    labelOnScreen playerTwoLook = labelOnScreen.T;
+
     public GameWorld() {
         addKeyListener(new Player.keyboard());
-        drow(GameWorld.spieler1.figur, "S", Color.red, 0, 0, 12, 10);
-        drow(GameWorld.spieler1.zombie.figur, "Z", Color.red, 0, 0, 12, 10);
+        drow(GameWorld.spieler1.figur, playerLook.toString(), Color.red, 0, 0, 12, 10);
+        drow(GameWorld.spieler1.zombie.figur, zombieLook.toString(), Color.red, 0, 0, 12, 10);
         drow(GameWorld.spieler1.score, "Score: " + GameWorld.spieler1.s, Color.red, 0, 520, 15, 60);
         drow(GameWorld.spieler1.levellabel, "Level: " + GameWorld.spieler1.l, Color.red, 100, 520, 15, 60);
 
-        drow(GameWorld.spieler2.figur, "T", Color.blue, 0, 0, 12, 10);
-        drow(GameWorld.spieler2.zombie.figur, "Z", Color.blue, 0, 0, 12, 10);
+        drow(GameWorld.spieler2.figur, playerTwoLook.toString(), Color.blue, 0, 0, 12, 10);
+        drow(GameWorld.spieler2.zombie.figur, zombieLook.toString(), Color.blue, 0, 0, 12, 10);
         drow(GameWorld.spieler2.score, "Score: " + GameWorld.spieler2.s, Color.blue, 700, 520, 15, 60);
         drow(GameWorld.spieler2.levellabel, "Level: " + GameWorld.spieler2.l, Color.blue, 800, 520, 15, 60);
 

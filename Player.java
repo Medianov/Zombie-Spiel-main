@@ -81,10 +81,6 @@ public class Player extends Entity {
         }
     }
 
-    /**
-     * 
-     * @param spieler
-     */
     public static void gewinnen(Player spieler) {
 
         if (Touch(spieler.figur, GameWorld.Ausgang)) {
@@ -100,10 +96,6 @@ public class Player extends Entity {
         }
     }
 
-    /**
-     * 
-     * @param spieler
-     */
     public static void levels(Player spieler) {
         for (int i = 0; i < GameWorld.heilmittel.length; i++) {
 

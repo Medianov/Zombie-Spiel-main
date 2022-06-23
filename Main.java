@@ -3,7 +3,7 @@ import javax.swing.*;
 public class Main {
     static int windowWidth = 900;
     static int windowHeight = 600;
-    
+
     /**
      * 
      * @param args
@@ -28,7 +28,6 @@ public class Main {
  * technische Anforderungen
  * Mindestens zwei abstrakte Methoden (noch eine)
  * Mindestens eine überladene Methode (noch eine)
- * Mindestens eine Enumeration (noch eine)
  * Mindestens eine selbst definierte Exception fehlt
  * 
  * Pflicht-Anforderungen
