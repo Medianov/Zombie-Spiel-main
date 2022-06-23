@@ -1,9 +1,7 @@
 import javax.swing.*;
 
-/**
- * Zombie-Klasse. Dient in diesen Spiel als Monster bzw. Jäger.
- */
 public  class Zombie extends Entity {
+
     public void zombie_check(Player spieler) {
         if (touched(spieler.zombie.figur, spieler.figur)) {
             spieler.figur.setBounds(-10000, -10000, 0, 0);
@@ -11,10 +9,6 @@ public  class Zombie extends Entity {
         }
     }
 
-    /**
-     * 
-     * @param spieler
-     */
     public  void zombie_folgen(Player spieler) {
         if (spieler.figur.getX() > 0) {
             if (spieler.zombie.figur.getX() < spieler.figur.getX()) {
@@ -32,19 +26,12 @@ public  class Zombie extends Entity {
         }
     }
 
-    /**
-     * Zombie-Anfangsbedingung
-     * @throws InterruptedException
-     */
     public static void zombie_folgen() throws InterruptedException {
         GameWorld.ausgabe.setText("Das Spiel beginnt und die Zombies schlafen noch :)");
         Thread.sleep(5000);
         GameWorld.ausgabe.setText("Die Zombies KOMMEN");
     }
 
-    /**
-     * Fuer den Thread des Zombies
-     */
     @Override
     public void run() {
         try {
@@ -63,13 +50,6 @@ public  class Zombie extends Entity {
         }
     }
 
-    /**
-     * 
-     * Modifizierte bewegung Klasse; angepasst fuer den Zombie
-     * @param charakter
-     * @param x
-     * @param y
-     */
     @Override
     public void bewegung(JLabel charakter, int x, int y)  {
             charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
