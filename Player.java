@@ -15,12 +15,8 @@ public class Player extends Entity {
     int Xneu;
     int Yneu;
 
-    /**
-     *
-     */
     public static class keyboard extends KeyAdapter {
         @Override
- 
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
@@ -47,6 +43,7 @@ public class Player extends Entity {
             if (key == KeyEvent.VK_S) {
                 Entity.Bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
             }
+
         }
 
         @Override
@@ -92,7 +89,9 @@ public class Player extends Entity {
             }
             GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " muss noch "
                     + (50 - spieler.heilmittel_anzahl) + " Heilmittel einsammeln");
+
         }
+
     }
 
     public static void levels(Player spieler) {
@@ -114,9 +113,11 @@ public class Player extends Entity {
                         spieler.speed = spieler.speed + 1;
                         spieler.bedingung = 2 * spieler.bedingung;
                     }
+
                 }
             }
         }
+
     }
 
     @Override
@@ -134,9 +135,12 @@ public class Player extends Entity {
                 gewinnen(GameWorld.spieler2);
                 rand_check(GameWorld.spieler2.figur);
                 Thread.sleep(10);
+
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
     }
+
 }

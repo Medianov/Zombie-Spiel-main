@@ -35,7 +35,6 @@ public class Zombie extends Entity {
         try {
             zombie_folgen();
             while (true) {
-
                 zombie_check(GameWorld.spieler1);
                 zombie_check(GameWorld.spieler2);
                 rand_check(GameWorld.spieler1.zombie.figur);
