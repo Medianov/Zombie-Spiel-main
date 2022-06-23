@@ -14,6 +14,27 @@ public class GameWorld extends JFrame {
     ArrayList<Integer> randomx = new ArrayList<>();
     ArrayList<Integer> randomy = new ArrayList<>();
 
+    public GameWorld() {
+        addKeyListener(new Player.keyboard());
+        drow(GameWorld.spieler1.figur, playerLook.toString(), Color.red, 0, 0, 12, 10);
+        drow(GameWorld.spieler1.zombie.figur, zombieLook.toString(), Color.red, 0, 0, 12, 10);
+        drow(GameWorld.spieler1.score, "Score: " + GameWorld.spieler1.s, Color.red, 0, 520, 15, 60);
+        drow(GameWorld.spieler1.levellabel, "Level: " + GameWorld.spieler1.l, Color.red, 100, 520, 15, 60);
+
+        drow(GameWorld.spieler2.figur, playerTwoLook.toString(), Color.blue, 0, 0, 12, 10);
+        drow(GameWorld.spieler2.zombie.figur, zombieLook.toString(), Color.blue, 0, 0, 12, 10);
+        drow(GameWorld.spieler2.score, "Score: " + GameWorld.spieler2.s, Color.blue, 700, 520, 15, 60);
+        drow(GameWorld.spieler2.levellabel, "Level: " + GameWorld.spieler2.l, Color.blue, 800, 520, 15, 60);
+
+        drow(Ausgang, "#", Color.black, 0, 0, 12, 10);
+        drow(ausgabe, "", Color.black, 350, 520, 15, 350);
+
+        for (int i = 0; i < heilmittel.length; i++) {
+            heilmittel[i] = new JLabel();
+            drow(heilmittel[i], "\u2695", Color.green, 0, 0, 12, 10);
+        }
+    }
+
     /**
      * 
      * @param charakter
@@ -72,25 +93,4 @@ public class GameWorld extends JFrame {
     labelOnScreen playerLook = labelOnScreen.S;
     labelOnScreen zombieLook = labelOnScreen.Z;
     labelOnScreen playerTwoLook = labelOnScreen.T;
-
-    public GameWorld() {
-        addKeyListener(new Player.keyboard());
-        drow(GameWorld.spieler1.figur, playerLook.toString(), Color.red, 0, 0, 12, 10);
-        drow(GameWorld.spieler1.zombie.figur, zombieLook.toString(), Color.red, 0, 0, 12, 10);
-        drow(GameWorld.spieler1.score, "Score: " + GameWorld.spieler1.s, Color.red, 0, 520, 15, 60);
-        drow(GameWorld.spieler1.levellabel, "Level: " + GameWorld.spieler1.l, Color.red, 100, 520, 15, 60);
-
-        drow(GameWorld.spieler2.figur, playerTwoLook.toString(), Color.blue, 0, 0, 12, 10);
-        drow(GameWorld.spieler2.zombie.figur, zombieLook.toString(), Color.blue, 0, 0, 12, 10);
-        drow(GameWorld.spieler2.score, "Score: " + GameWorld.spieler2.s, Color.blue, 700, 520, 15, 60);
-        drow(GameWorld.spieler2.levellabel, "Level: " + GameWorld.spieler2.l, Color.blue, 800, 520, 15, 60);
-
-        drow(Ausgang, "#", Color.black, 0, 0, 12, 10);
-        drow(ausgabe, "", Color.black, 350, 520, 15, 350);
-
-        for (int i = 0; i < heilmittel.length; i++) {
-            heilmittel[i] = new JLabel();
-            drow(heilmittel[i], "\u2695", Color.green, 0, 0, 12, 10);
-        }
-    }
 }

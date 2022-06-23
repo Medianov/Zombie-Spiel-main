@@ -47,7 +47,6 @@ public class Player extends Entity {
             if (key == KeyEvent.VK_S) {
                 Entity.Bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
             }
-
         }
 
         @Override
@@ -135,12 +134,9 @@ public class Player extends Entity {
                 gewinnen(GameWorld.spieler2);
                 rand_check(GameWorld.spieler2.figur);
                 Thread.sleep(10);
-
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
     }
-
 }
