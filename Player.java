@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Player Klasse
+ */
 public class Player extends Entity {
 
     JLabel levellabel = new JLabel();
@@ -15,34 +18,37 @@ public class Player extends Entity {
     int Xneu;
     int Yneu;
 
+    /**
+     * Keyboard Klasse, welche benötigt wird, um die Tastatureingabe abzufangen.
+     */
     public static class keyboard extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
-                entity.Bewegung(GameWorld.spieler1.figur, -GameWorld.spieler1.speed, 0);
+                entity.bewegung(GameWorld.spieler1.figur, -GameWorld.spieler1.speed, 0);
             }
             if (key == KeyEvent.VK_RIGHT) {
-                entity.Bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.speed, 0);
+                entity.bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.speed, 0);
             }
             if (key == KeyEvent.VK_UP) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, -GameWorld.spieler1.speed);
+                entity.bewegung(GameWorld.spieler1.figur, 0, -GameWorld.spieler1.speed);
             }
             if (key == KeyEvent.VK_DOWN) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, GameWorld.spieler1.speed);
+                entity.bewegung(GameWorld.spieler1.figur, 0, GameWorld.spieler1.speed);
             }
             if (key == KeyEvent.VK_A) {
-                entity.Bewegung(GameWorld.spieler2.figur, -GameWorld.spieler2.speed, 0);
+                entity.bewegung(GameWorld.spieler2.figur, -GameWorld.spieler2.speed, 0);
             }
             if (key == KeyEvent.VK_D) {
-                entity.Bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.speed, 0);
+                entity.bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.speed, 0);
             }
             if (key == KeyEvent.VK_W) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, -GameWorld.spieler2.speed);
+                entity.bewegung(GameWorld.spieler2.figur, 0, -GameWorld.spieler2.speed);
             }
             if (key == KeyEvent.VK_S) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
+                entity.bewegung(GameWorld.spieler2.figur, 0, GameWorld.spieler2.speed);
             }
 
         }
@@ -51,36 +57,40 @@ public class Player extends Entity {
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_RIGHT) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_UP) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_DOWN) {
-                entity.Bewegung(GameWorld.spieler1.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler1.figur, 0, 0);
             }
             if (key == KeyEvent.VK_A) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_D) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_W) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler2.figur, 0, 0);
             }
             if (key == KeyEvent.VK_S) {
-                entity.Bewegung(GameWorld.spieler2.figur, 0, 0);
+                entity.bewegung(GameWorld.spieler2.figur, 0, 0);
             }
 
         }
     }
 
-    public  void gewinnen(Player spieler) {
-
-        if (Touch(spieler.figur, GameWorld.Ausgang)) {
+    /**
+     * Siegesbedingung werden hier festgelegt.
+     * 
+     * @param spieler
+     */
+    public void gewinnen(Player spieler) {
+        if (touched(spieler.figur, GameWorld.Ausgang)) {
 
             if (spieler.heilmittel_anzahl >= GameWorld.heilen / 2) {
                 spieler.figur.setBounds(-10000, -10000, 0, 0);
@@ -92,9 +102,15 @@ public class Player extends Entity {
         }
     }
 
-    public  void levels(Player spieler) {
+    /**
+     * Score-System: mit steigenden Level steigt die Bedingung fuer das naechste
+     * Level und die Geschwindigkeit (speed).
+     * 
+     * @param spieler
+     */
+    public void levels(Player spieler) {
         for (int i = 0; i < GameWorld.heilmittel.length; i++) {
-            if (Touch(spieler.figur, GameWorld.heilmittel[i])) {
+            if (touched(spieler.figur, GameWorld.heilmittel[i])) {
                 if (spieler.heilmittel_anzahl < GameWorld.heilen / 2) {
                     spieler.heilmittel_anzahl++;
                     spieler.s = String.valueOf(spieler.heilmittel_anzahl);
@@ -115,42 +131,43 @@ public class Player extends Entity {
         }
     }
 
-
-
+    /**
+     * Fuer den Spieler-Thread.
+     */
     @Override
-
     public void run() {
-
         try {
             while (true) {
-                Bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.Xneu, GameWorld.spieler1.Yneu);
+                bewegung(GameWorld.spieler1.figur, GameWorld.spieler1.Xneu, GameWorld.spieler1.Yneu);
                 levels(GameWorld.spieler1);
                 gewinnen(GameWorld.spieler1);
                 rand_check(GameWorld.spieler1.figur);
-                Bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.Xneu, GameWorld.spieler2.Yneu);
+                bewegung(GameWorld.spieler2.figur, GameWorld.spieler2.Xneu, GameWorld.spieler2.Yneu);
                 levels(GameWorld.spieler2);
                 gewinnen(GameWorld.spieler2);
                 rand_check(GameWorld.spieler2.figur);
                 Thread.sleep(10);
-
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
     }
 
+    /**
+     * @param charakter
+     * @param x
+     * @param y
+     */
     @Override
-    public void Bewegung(JLabel charakter, int x, int y)  {
-            charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
-            if (charakter == GameWorld.spieler1.figur) {
-                GameWorld.spieler1.Xneu = x;
-                GameWorld.spieler1.Yneu = y;
-            }
-            if (charakter == GameWorld.spieler2.figur) {
-                GameWorld.spieler2.Xneu = x;
-                GameWorld.spieler2.Yneu = y;
-            }
+    public void bewegung(JLabel charakter, int x, int y) {
+        charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
+        if (charakter == GameWorld.spieler1.figur) {
+            GameWorld.spieler1.Xneu = x;
+            GameWorld.spieler1.Yneu = y;
         }
-
+        if (charakter == GameWorld.spieler2.figur) {
+            GameWorld.spieler2.Xneu = x;
+            GameWorld.spieler2.Yneu = y;
+        }
+    }
 }

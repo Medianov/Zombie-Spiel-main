@@ -1,47 +1,40 @@
 import javax.swing.*;
 
 /**
- * 
+ * Entity Klasse
  */
 public abstract class Entity implements Runnable {
     JLabel figur = new JLabel();
     int speed = 1;
     static Player entity = new Player();
 
-/**
- * 
- * @param charakter
- * @param x
- * @param y
- */
-
-
     /**
-     * 
+     * Prueft, ob sich ein Spieler/Player am Rand des Bildes befindet. Dieser wird dann zurückgedrängt.
      * @param charakter
      */
     public static void rand_check(JLabel charakter) {
         if (charakter.getX() <= 0)
-            entity.Bewegung(charakter, 1, 0);
+            entity.bewegung(charakter, 1, 0);
         if (charakter.getX() >= (Main.windowWidth - 25))
-            entity.Bewegung(charakter, -1, 0);
+            entity.bewegung(charakter, -1, 0);
         if (charakter.getY() <= 0)
-            entity.Bewegung(charakter, 0, 1);
+            entity.bewegung(charakter, 0, 1);
         if (charakter.getY() > (Main.windowHeight - 100))
-            entity.Bewegung(charakter, 0, -1);
+            entity.bewegung(charakter, 0, -1);
     }
 
     /**
-     * 
-     * @param check1
-     * @param check2
-     * @return
+     * Prueft, ob sich zwei Objekte sich berühren.
+     * Was tut diese Methode?
+     * @param label1
+     * @param label2
+     * @return boolean
      */
-    public static boolean Touch(JLabel check1, JLabel check2) {
-        double checkx = Math.abs(check1.getBounds().getCenterX() - check2.getBounds().getCenterX());
-        double checky = Math.abs(check1.getBounds().getCenterY() - check2.getBounds().getCenterY());
-        if ((checky < (check1.getHeight() + check2.getHeight()) / 2)
-                && (checkx < ((check1.getWidth() + check2.getWidth()) / 2))) {
+    public static boolean touched(JLabel label1, JLabel label2) {
+        double checkx = Math.abs(label1.getBounds().getCenterX() - label2.getBounds().getCenterX());
+        double checky = Math.abs(label1.getBounds().getCenterY() - label2.getBounds().getCenterY());
+        if ((checky < (label1.getHeight() + label2.getHeight()) / 2)
+                && (checkx < ((label1.getWidth() + label2.getWidth()) / 2))) {
             return true;
         } else {
             return false;
@@ -49,9 +42,9 @@ public abstract class Entity implements Runnable {
     }
 
     /*
-     * Abrakte Methoden
+     * Abrakte Methoden, welche in Zombie in Spieler definiert werden.
      */
     @Override
     public abstract void run();
-    public abstract void Bewegung(JLabel charakter, int x, int y);
+    public abstract void bewegung(JLabel charakter, int x, int y);
 }

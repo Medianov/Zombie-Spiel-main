@@ -1,37 +1,50 @@
 import javax.swing.*;
 
+/**
+ * Zombie-Klasse. Dient in diesen Spiel als Monster bzw. Jäger.
+ */
 public  class Zombie extends Entity {
-
     public void zombie_check(Player spieler) {
-        if (Touch(spieler.zombie.figur, spieler.figur)) {
+        if (touched(spieler.zombie.figur, spieler.figur)) {
             spieler.figur.setBounds(-10000, -10000, 0, 0);
             GameWorld.ausgabe.setText(" Spieler " + spieler.figur.getText() + " hat verloren.");
         }
     }
 
+    /**
+     * 
+     * @param spieler
+     */
     public  void zombie_folgen(Player spieler) {
         if (spieler.figur.getX() > 0) {
             if (spieler.zombie.figur.getX() < spieler.figur.getX()) {
-                Bewegung(spieler.zombie.figur, spieler.zombie.speed, 0);
+                bewegung(spieler.zombie.figur, spieler.zombie.speed, 0);
             }
             if (spieler.zombie.figur.getX() > spieler.figur.getX()) {
-                Bewegung(spieler.zombie.figur, -spieler.zombie.speed, 0);
+                bewegung(spieler.zombie.figur, -spieler.zombie.speed, 0);
             }
             if (spieler.zombie.figur.getY() < spieler.figur.getY()) {
-                Bewegung(spieler.zombie.figur, 0, spieler.zombie.speed);
+                bewegung(spieler.zombie.figur, 0, spieler.zombie.speed);
             }
             if (spieler.zombie.figur.getY() > spieler.figur.getY()) {
-                Bewegung(spieler.zombie.figur, 0, -spieler.zombie.speed);
+                bewegung(spieler.zombie.figur, 0, -spieler.zombie.speed);
             }
         }
     }
 
+    /**
+     * Zombie-Anfangsbedingung
+     * @throws InterruptedException
+     */
     public static void zombie_folgen() throws InterruptedException {
         GameWorld.ausgabe.setText("Das Spiel beginnt und die Zombies schlafen noch :)");
         Thread.sleep(5000);
         GameWorld.ausgabe.setText("Die Zombies KOMMEN");
     }
 
+    /**
+     * Fuer den Thread des Zombies
+     */
     @Override
     public void run() {
         try {
@@ -50,8 +63,15 @@ public  class Zombie extends Entity {
         }
     }
 
+    /**
+     * 
+     * Modifizierte bewegung Klasse; angepasst fuer den Zombie
+     * @param charakter
+     * @param x
+     * @param y
+     */
     @Override
-    public void Bewegung(JLabel charakter, int x, int y)  {
+    public void bewegung(JLabel charakter, int x, int y)  {
             charakter.setLocation(charakter.getX() + x, charakter.getY() + y);
     }
 }
