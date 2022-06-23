@@ -85,18 +85,14 @@ public class Player extends Entity {
                 spieler.figur.setBounds(-100, -100, 0, 0);
 
                 GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " hat gewonnen");
-
             }
             GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " muss noch "
                     + (50 - spieler.heilmittel_anzahl) + " Heilmittel einsammeln");
-
         }
-
     }
 
     public static void levels(Player spieler) {
         for (int i = 0; i < GameWorld.heilmittel.length; i++) {
-
             if (Touch(spieler.figur, GameWorld.heilmittel[i])) {
                 if (spieler.heilmittel_anzahl < GameWorld.heilen / 2) {
                     spieler.heilmittel_anzahl++;
@@ -113,11 +109,9 @@ public class Player extends Entity {
                         spieler.speed = spieler.speed + 1;
                         spieler.bedingung = 2 * spieler.bedingung;
                     }
-
                 }
             }
         }
-
     }
 
     @Override

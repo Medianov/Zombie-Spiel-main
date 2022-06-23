@@ -16,6 +16,7 @@ public class GameWorld extends JFrame {
 
     public GameWorld() {
         addKeyListener(new Player.keyboard());
+
         drow(GameWorld.spieler1.figur, playerLook.toString(), Color.red, 0, 0, 12, 10);
         drow(GameWorld.spieler1.zombie.figur, zombieLook.toString(), Color.red, 0, 0, 12, 10);
         drow(GameWorld.spieler1.score, "Score: " + GameWorld.spieler1.s, Color.red, 0, 520, 15, 60);
@@ -45,37 +46,28 @@ public class GameWorld extends JFrame {
      * @param height
      * @param width
      */
-    public void drow(JLabel charakter, String name, Color color, int x, int y, int height, int width) {
+    public void drow(JLabel charakter, String name, Color color, int x, int y, int height, int width){
         int probex;
         int probey;
         if (x == 0 && y == 0) {
             Random random = new Random();
-            /*
-             * xnochmal: while (true){
-             * probex=random.nextInt((Main.windowWidth-25));
-             * if(!randomx.contains(probex)){
-             * x=probex;
-             * randomx.add(x);
-             * }else {
-             * break xnochmal;
-             * }
-             * }
-             * 
-             * ynochmal: while(true) {
-             * probey=random.nextInt((Main.windowHeight-100));
-             * if(!randomy.contains(probey)){
-             * y=probey;
-             * randomy.add(y);
-             * }else{
-             * break ynochmal;
-             * }
-             * 
-             * 
-             * }
-             */
+
             y = random.nextInt((Main.windowHeight - 100));
-            x = random.nextInt((Main.windowWidth - 25));
+            x = random.nextInt((Main.windowWidth - 0));
+
+            if (randomy.contains(y)) {
+                while(randomy.contains(y)) {
+                    y = random.nextInt((Main.windowHeight - 100));
+                }
+            }
+
+            if (randomy.contains(x)) {
+                while(randomy.contains(x)) {
+                    x = random.nextInt((Main.windowWidth - 0));
+                }
+            }
         }
+
         this.getContentPane().setLayout(null);
         charakter.setText(name);
         charakter.setBounds(x, y, width, height);
