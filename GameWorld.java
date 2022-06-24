@@ -19,8 +19,8 @@ public class GameWorld extends JFrame {
     static Player spieler2 = new Player();
     static JLabel Ausgang = new JLabel();
     static JLabel ausgabe = new JLabel();
-    static int heilen = 100;
-    static JLabel[] heilmittel = new JLabel[heilen];
+    static int heilmittelAnzahl = 100;
+    static JLabel[] heilmittel = new JLabel[heilmittelAnzahl];
     ArrayList<Integer> randomx = new ArrayList<>();
     ArrayList<Integer> randomy = new ArrayList<>();
 

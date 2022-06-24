@@ -8,12 +8,14 @@ import java.awt.event.KeyEvent;
 public class Player extends Entity {
     JLabel levellabel = new JLabel();
     JLabel score = new JLabel();
+
+    // Zombie wird hier augerufen, damit der Speed vom Zombie verändert werden kann
     Zombie zombie = new Zombie();
     String scorePlayer = "0";
     String levelPlayer = "1";
     int heilmittel_anzahl = 0;
     int level = 1;
-    int bedingung = 10;
+    int bedingungFuerLevel = 10;
     int xNeu;
     int yNeu;
 
@@ -97,7 +99,7 @@ public class Player extends Entity {
     public void gewinnen(Player spieler) {
         if (touched(spieler.figur, GameWorld.Ausgang)) {
 
-            if (spieler.heilmittel_anzahl >= GameWorld.heilen / 2) {
+            if (spieler.heilmittel_anzahl >= GameWorld.heilmittelAnzahl / 2) {
                 spieler.figur.setBounds(-10000, -10000, 0, 0);
 
                 GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " hat gewonnen");
@@ -116,20 +118,20 @@ public class Player extends Entity {
     public void levels(Player spieler) {
         for (int i = 0; i < GameWorld.heilmittel.length; i++) {
             if (touched(spieler.figur, GameWorld.heilmittel[i])) {
-                if (spieler.heilmittel_anzahl < GameWorld.heilen / 2) {
+                if (spieler.heilmittel_anzahl < GameWorld.heilmittelAnzahl / 2) {
                     spieler.heilmittel_anzahl++;
                     spieler.scorePlayer = String.valueOf(spieler.heilmittel_anzahl);
                     spieler.score.setText("Score:" + spieler.scorePlayer);
                     GameWorld.heilmittel[i].setBounds(-50, -50, 0, 0);
                     GameWorld.ausgabe.setText("Spieler " + spieler.figur.getText() + " hat " + spieler.heilmittel_anzahl
                             + " Heilmittel eingesammelt");
-                    if (spieler.heilmittel_anzahl == spieler.bedingung) {
+                    if (spieler.heilmittel_anzahl == spieler.bedingungFuerLevel) {
                         spieler.level++;
                         spieler.levelPlayer = String.valueOf(spieler.level);
                         spieler.levellabel.setText("Level:" + spieler.levelPlayer);
                         spieler.zombie.speed = spieler.zombie.speed + 1;
                         spieler.speed = spieler.speed + 1;
-                        spieler.bedingung = 2 * spieler.bedingung;
+                        spieler.bedingungFuerLevel = 2 * spieler.bedingungFuerLevel;
                     }
                 }
             }

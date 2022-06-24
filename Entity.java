@@ -10,6 +10,7 @@ public abstract class Entity implements Runnable {
 
     /**
      * Prueft, ob sich ein Spieler/Player am Rand des Bildes befindet. Dieser wird dann zurückgedrängt.
+     * Player entity, damit .bewegen aufgerufen werden kann. bewegen ist in Entity Abstract.
      * @param charakter Es wird das JLabel erwartet von einen Player oder Zombie.
      */
     public static void rand_check(JLabel charakter) {
