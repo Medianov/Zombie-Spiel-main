@@ -1,7 +1,15 @@
 import javax.swing.*;
 
-public  class Zombie extends Entity {
+/**
+  * Zombie-Klasse. Dient in diesen Spiel als Monster bzw. Jäger.
+  */
+public class Zombie extends Entity {
 
+    /**
+     * Siegesbedingung fuer den Zombie, dieser prueft, ob der Player und der Zombie sich berührt
+     * haben.
+     * @param spieler Der Zombie-Check, also die Überprüfung, ob die sich berhührt haben
+     */
     public void zombie_check(Player spieler) {
         if (touched(spieler.zombie.figur, spieler.figur)) {
             spieler.figur.setBounds(-10000, -10000, 0, 0);
@@ -9,6 +17,11 @@ public  class Zombie extends Entity {
         }
     }
 
+     /**
+      * Hier wird der Algorithmus fuer den Zombie ausgefuehrt, der den Spieler jagt.
+      * Ueberladene Methode:
+      * @param spieler fuer den Zombie, damit dieser weiß, wo sich der Spieler befindet.
+      */
     public  void zombie_folgen(Player spieler) {
         if (spieler.figur.getX() > 0) {
             if (spieler.zombie.figur.getX() < spieler.figur.getX()) {
@@ -26,12 +39,19 @@ public  class Zombie extends Entity {
         }
     }
 
+    /**
+     * Zombie Anfangsverhalten
+     * @throws InterruptedException fuer den Thread-Delay
+     */
     public static void zombie_folgen() throws InterruptedException {
         GameWorld.ausgabe.setText("Das Spiel beginnt und die Zombies schlafen noch :)");
         Thread.sleep(5000);
         GameWorld.ausgabe.setText("Die Zombies KOMMEN");
     }
 
+    /**
+     * fuer den Zombie Thread
+     */
     @Override
     public void run() {
         try {
@@ -50,6 +70,9 @@ public  class Zombie extends Entity {
         }
     }
 
+    /**
+     * Abtrakte Methode fuer den Zombie modifiziert.
+     */
     @Override
     public void bewegung(JLabel charakter, int x, int y)  {
             charakter.setLocation(charakter.getX() + x, charakter.getY() + y);

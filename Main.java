@@ -15,7 +15,8 @@ public class Main {
 
     /**
      * 
-     * @param args
+     * @param args Ein String, welcher vom Benutzer bein Starten übergeben wird.
+     * @return Es wird nichts zurückgegeben
      */
     public static void main(String[] args) {
         GameWorld gameWorld = new GameWorld();
@@ -38,5 +39,6 @@ public class Main {
         gameWorld.setLocationRelativeTo(null);
         gameWorld.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWorld.setResizable(false);
+        return;
     }
 }

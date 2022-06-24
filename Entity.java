@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 /**
- * Entity Klasse
+ * Entity Klasse. Stellt Eigenschaften fuer den Player und Zombie bereit.
  */
 public abstract class Entity implements Runnable {
     JLabel figur = new JLabel();
@@ -10,7 +10,7 @@ public abstract class Entity implements Runnable {
 
     /**
      * Prueft, ob sich ein Spieler/Player am Rand des Bildes befindet. Dieser wird dann zurückgedrängt.
-     * @param charakter
+     * @param charakter Es wird das JLabel erwartet von einen Player oder Zombie.
      */
     public static void rand_check(JLabel charakter) {
         if (charakter.getX() <= 0)
@@ -24,11 +24,11 @@ public abstract class Entity implements Runnable {
     }
 
     /**
-     * Prueft, ob sich zwei Objekte sich berühren.
-     * Was tut diese Methode?
-     * @param label1
-     * @param label2
-     * @return boolean
+     * Prueft, ob sich zwei Objekte, hier JLabels, sich berühren.
+     * Es kann das Heilmittel, der Player, der Zombie oder der Ausgang sein.
+     * @param label1 1. Objekt fuer den Vergleich
+     * @param label2 2. Objekt fuer den Vergleich
+     * @return true or false
      */
     public static boolean touched(JLabel label1, JLabel label2) {
         double checkx = Math.abs(label1.getBounds().getCenterX() - label2.getBounds().getCenterX());
